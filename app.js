@@ -94,4 +94,8 @@ app.post("/login",async(req,res)=>{
   }
 })
 
+app.get("/dashboard" , (req,res)=>{
+  res.status(201).json(`Welcome to the Secret dashboard `)
+})
+
 module.exports = app;
