@@ -6,6 +6,8 @@ app.use(express.json());
 const User = require("./model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const auth = require("./middleware/auth");
+
 
 app.get("/", (req, res) => {
   res.send("<h1>Hello from Auth_system -LCO</h1>");
@@ -94,7 +96,7 @@ app.post("/login",async(req,res)=>{
   }
 })
 
-app.get("/dashboard" , (req,res)=>{
+app.get("/dashboard" , auth,(req,res)=>{
   res.status(201).json(`Welcome to the Secret dashboard `)
 })
 
