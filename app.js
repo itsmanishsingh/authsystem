@@ -7,6 +7,8 @@ const User = require("./model/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("./middleware/auth");
+const cookieParser = require("cookie-parser");
+app.use(cookieParser());
 
 
 app.get("/", (req, res) => {
@@ -86,7 +88,18 @@ app.post("/login",async(req,res)=>{
 
       user.token = token;
       user.password = undefined;
-      res.status(201).json(user);
+      // res.status(201).json(user);
+      
+      // if you want to use cookies
+      const options = {
+        expires : new Date( Date.now()+3*24*60*60*1000),
+        httpOnly: true,
+      };
+      res.status(201).cookie("token" , token ,options).json({
+        success : true,
+        token,
+        user,
+      })
     }
 
     res.status(400).send(`Email or password does not match with the database`)
