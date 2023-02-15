@@ -3,6 +3,7 @@
 
 This project is based on Nodejs and Express.
 NPM Packages 
-- JWT - Jason web token
+- JWT - Json web token
 - bcrypt
 - cookieParser
+- Mongoose 
