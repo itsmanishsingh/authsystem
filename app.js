@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 
 app.get("/", (req, res) => {
-  res.send("<h1>Hello from Auth_system -LCO</h1>");
+  res.send("<h1>Welcome to the Home Page of Auth_System</h1>");
 });
 
 app.post("/register", async (req, res) => {
@@ -70,20 +70,21 @@ app.post("/login",async(req,res)=>{
     // Searching for the User in Database
     const user = await User.findOne({email});
 
-    // If the user is not there in the database
-    // if(user){
-    //   res.status(201).json(`User is new kindly sign in first`);
-    // }
-
+    /*
+    If the user is not there in the database
+    if(user){
+      res.status(201).json(`User is new kindly sign in first`);
+    }
+    */
 
     // If the user is present in the database Checking the password 
     if(user && (await bcrypt.compare(password,user.password))){
       const token = jwt.sign(
-      {user_id : user._id , email},
-      process.env.SECRET_KEY,
-      {
-        expiresIn:"2h"
-      }
+        {user_id : user._id , email},
+        process.env.SECRET_KEY,
+        {
+          expiresIn:"2h"
+        }
       )
 
       user.token = token;
