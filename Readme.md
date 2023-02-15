@@ -1,2 +1,8 @@
 # This Auth_System is a backend project 
-(Live)[authsystem-production-3563.up.railway.app]
+[Link](authsystem-production-3563.up.railway.app)
+
+This project is based on Nodejs and Express.
+NPM Packages 
+- JWT - Jason web token
+- bcrypt
+- cookieParser
